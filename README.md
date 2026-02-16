@@ -1,4 +1,4 @@
-# Portfolio - Marvin Zúñiga
+# Portfolio - Marvin Zúniga Usando React
 
 Portafolio personal desarrollado con React, TypeScript y Tailwind CSS.
 
