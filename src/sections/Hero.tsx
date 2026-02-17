@@ -48,7 +48,7 @@ export function Hero() {
 
         {/* Description */}
         <p className="max-w-2xl mx-auto text-lg text-muted-foreground/80 mb-10 animate-fade-in-up stagger-3">
-          A passionate Python Developer building modern and efficient web solutions.
+          Un apasionado desarrollador de Python que crea soluciones web modernas y eficientes.
         </p>
 
         {/* CTA Buttons */}

@@ -1,62 +1,56 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { Github } from "lucide-react";
 
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    description: "Plataforma de comercio electrónico completa con carrito de compras, pagos integrados y panel de administración.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
-    demoUrl: "#",
-    repoUrl: "#",
+    title: "Python Web Scraper",
+    description: "Herramienta de extracción de datos web creada con Python, Beautiful Soup y Requests para extraer datos de sitios web..",
+    image: "/public/images/proyectos/scraper.png",
+    tags: ["Python", "BeautifulSoup", "Requests", "Scraping"],
+    repoUrl: "https://github.com/marvinzuniga19/flask_webJob_scraper",
   },
   {
     id: 2,
-    title: "Task Management App",
-    description: "Aplicación de gestión de tareas con colaboración en tiempo real, notificaciones y tableros Kanban.",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=500&fit=crop",
-    tags: ["Next.js", "TypeScript", "Prisma", "Socket.io"],
-    demoUrl: "#",
-    repoUrl: "#",
+    title: "Sistema Inventario Web",
+    description: "Una aplicación web moderna y responsiva para la gestión de inventario de pequeños negocios, desarrollada con Python Flask y Bootstrap 5",
+    image: "/public/images/proyectos/sistema_Inventario.png",
+    tags: ["Python", "Flask", "Bootstrap", "SQLite"],
+    repoUrl: "https://github.com/marvinzuniga19/inventario_python",
   },
   {
     id: 3,
-    title: "AI Content Generator",
-    description: "Herramienta de generación de contenido impulsada por IA para crear textos, imágenes y código.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop",
-    tags: ["Python", "OpenAI", "FastAPI", "React"],
-    demoUrl: "#",
-    repoUrl: "#",
+    title: "Punto de Venta (POS) Python",
+    description: "Un sistema completo de punto de venta desarrollado en Python con CustomTkinter, SQLite y soporte completo de códigos de barras, mediante cámara y entrada manual.",
+    image: "/public/images/proyectos/punto_venta.png",
+    tags: ["Python", "CustomTkinter", "SQLite", "Barcode"],
+    repoUrl: "https://github.com/marvinzuniga19/pos_python",
   },
   {
     id: 4,
-    title: "Analytics Dashboard",
-    description: "Dashboard de análisis de datos con visualizaciones interactivas, reportes automatizados y exportación.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
-    tags: ["Vue.js", "D3.js", "PostgreSQL", "Docker"],
-    demoUrl: "#",
-    repoUrl: "#",
+    title: "Generador de Facturas Flutter",
+    description: "Una aplicación profesional de Flutter para crear, gestionar y compartir facturas con capacidad de exportación a PDF.",
+    image: "/public/images/proyectos/invoice.png",
+    tags: ["Flutter", "Dart", "PDF Export", "Mobile App"],
+    repoUrl: "https://github.com/marvinzuniga19/invoice_app_flutter",
   },
   {
     id: 5,
-    title: "Social Media App",
-    description: "Aplicación de redes sociales con feed en tiempo real, mensajería y sistema de notificaciones.",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop",
-    tags: ["React Native", "Firebase", "GraphQL", "AWS"],
-    demoUrl: "#",
-    repoUrl: "#",
+    title: "Punto de venta (POS) Flutter",
+    description: "Un Sistema de Punto de Venta (POS) moderno y multiplataforma diseñado específicamente para el mercado nicaragüense, con cumplimiento fiscal hecho con Flutter.",
+    image: "/public/images/proyectos/punto_venta_flutter.png",
+    tags: ["Flutter", "Dart", "Firebase", "Fiscal Compliance"],
+    repoUrl: "https://github.com/marvinzuniga19/flutter_pos",
   },
   {
     id: 6,
-    title: "Portfolio Website",
-    description: "Sitio web de portafolio personal con animaciones, modo oscuro y optimización SEO.",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=500&fit=crop",
-    tags: ["Astro", "Tailwind", "Framer Motion", "Vercel"],
-    demoUrl: "#",
-    repoUrl: "#",
+    title: "Descargador de YouTube Flet",
+    description: "Una aplicación sencilla y fácil de usar, desarrollada en Python con el framework Flet , que permite descargar música desde YouTube en formato MP3 u otros formatos compatibles.",
+    image: "/public/images/proyectos/ytd.png",
+    tags: ["Python", "Flet", "YouTube Downloader", "GUI"],
+    repoUrl: "https://github.com/marvinzuniga19/youtube_music_downloader",
   },
 ];
 
@@ -124,17 +118,6 @@ export function Projects() {
 
                 {/* Actions */}
                 <div className="flex gap-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 border-violet-500/30 hover:bg-violet-500/10"
-                    asChild
-                  >
-                    <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Demo
-                    </a>
-                  </Button>
                   <Button
                     variant="outline"
                     size="sm"
