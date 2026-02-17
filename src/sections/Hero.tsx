@@ -30,8 +30,8 @@ export function Hero() {
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 mb-8 animate-fade-in-up">
-          <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-violet-500/20 mb-8 animate-fade-in-up">
+          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
           <span className="text-sm text-violet-300">Disponible para proyectos</span>
         </div>
 
