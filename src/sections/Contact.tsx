@@ -4,9 +4,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export function Contact() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,12 +19,27 @@ export function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-    alert("¡Mensaje enviado! Te contactaré pronto.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsLoading(true);
+    setError(null);
+    setIsSuccess(false);
+
+    try {
+      await emailjs.sendForm(
+        "service_cijws4r",
+        "template_lypbddj",
+        formRef.current!,
+        "EEo-Zsf-2YMhmuUoz"
+      );
+      setIsSuccess(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      console.error("EmailJS Error:", err);
+      setError("Error al enviar el mensaje. Intenta de nuevo.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -46,7 +66,7 @@ export function Contact() {
           {/* Contact form */}
           <Card className="bg-card/50 backdrop-blur-sm border-border/50">
             <CardContent className="p-6">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">
@@ -54,6 +74,7 @@ export function Contact() {
                     </label>
                     <Input
                       id="name"
+                      name="name"
                       placeholder="Tu nombre"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -67,6 +88,7 @@ export function Contact() {
                     </label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="tu@email.com"
                       value={formData.email}
@@ -83,6 +105,7 @@ export function Contact() {
                   </label>
                   <Input
                     id="subject"
+                    name="subject"
                     placeholder="¿Sobre qué quieres hablar?"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -97,6 +120,7 @@ export function Contact() {
                   </label>
                   <Textarea
                     id="message"
+                    name="message"
                     placeholder="Cuéntame sobre tu proyecto..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -108,11 +132,21 @@ export function Contact() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-violet-600 hover:bg-violet-700 text-white py-6"
+                  disabled={isLoading}
+                  className="w-full bg-violet-600 hover:bg-violet-700 text-white py-6 disabled:opacity-50"
                 >
                   <Send className="w-4 h-4 mr-2" />
-                  Enviar mensaje
+                  {isLoading ? "Enviando..." : "Enviar mensaje"}
                 </Button>
+
+                {isSuccess && (
+                  <p className="text-green-500 text-center mt-4">
+                    ¡Mensaje enviado! Te contactaré pronto.
+                  </p>
+                )}
+                {error && (
+                  <p className="text-red-500 text-center mt-4">{error}</p>
+                )}
               </form>
             </CardContent>
           </Card>
