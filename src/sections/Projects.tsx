@@ -2,13 +2,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
+import { useState } from "react";
 
 const projects = [
   {
     id: 1,
     title: "Python Web Scraper",
     description: "Herramienta de extracción de datos web creada con Python, Beautiful Soup y Requests para extraer datos de sitios web..",
-    image: "/public/images/proyectos/scraper.png",
+    image: "/images/proyectos/scraper.png",
     tags: ["Python", "BeautifulSoup", "Requests", "Scraping"],
     repoUrl: "https://github.com/marvinzuniga19/flask_webJob_scraper",
   },
@@ -16,7 +17,7 @@ const projects = [
     id: 2,
     title: "Sistema Inventario Web",
     description: "Una aplicación web moderna y responsiva para la gestión de inventario de pequeños negocios, desarrollada con Python Flask y Bootstrap 5",
-    image: "/public/images/proyectos/sistema_Inventario.png",
+    image: "/images/proyectos/sistema_Inventario.png",
     tags: ["Python", "Flask", "Bootstrap", "SQLite"],
     repoUrl: "https://github.com/marvinzuniga19/inventario_python",
   },
@@ -24,7 +25,7 @@ const projects = [
     id: 3,
     title: "Punto de Venta (POS) Python",
     description: "Un sistema completo de punto de venta desarrollado en Python con CustomTkinter, SQLite y soporte completo de códigos de barras, mediante cámara y entrada manual.",
-    image: "/public/images/proyectos/punto_venta.png",
+    image: "/images/proyectos/punto_venta.png",
     tags: ["Python", "CustomTkinter", "SQLite", "Barcode"],
     repoUrl: "https://github.com/marvinzuniga19/pos_python",
   },
@@ -32,7 +33,7 @@ const projects = [
     id: 4,
     title: "Generador de Facturas Flutter",
     description: "Una aplicación profesional de Flutter para crear, gestionar y compartir facturas con capacidad de exportación a PDF.",
-    image: "/public/images/proyectos/invoice.png",
+    image: "/images/proyectos/invoice.png",
     tags: ["Flutter", "Dart", "PDF Export", "Mobile App"],
     repoUrl: "https://github.com/marvinzuniga19/invoice_app_flutter",
   },
@@ -40,7 +41,7 @@ const projects = [
     id: 5,
     title: "Punto de venta (POS) Flutter",
     description: "Un Sistema de Punto de Venta (POS) moderno y multiplataforma diseñado específicamente para el mercado nicaragüense, con cumplimiento fiscal hecho con Flutter.",
-    image: "/public/images/proyectos/punto_venta_flutter.png",
+    image: "/images/proyectos/punto_venta_flutter.png",
     tags: ["Flutter", "Dart", "Firebase", "Fiscal Compliance"],
     repoUrl: "https://github.com/marvinzuniga19/flutter_pos",
   },
@@ -48,11 +49,33 @@ const projects = [
     id: 6,
     title: "Descargador de YouTube Flet",
     description: "Una aplicación sencilla y fácil de usar, desarrollada en Python con el framework Flet , que permite descargar música desde YouTube en formato MP3 u otros formatos compatibles.",
-    image: "/public/images/proyectos/ytd.png",
+    image: "/images/proyectos/ytd.png",
     tags: ["Python", "Flet", "YouTube Downloader", "GUI"],
     repoUrl: "https://github.com/marvinzuniga19/youtube_music_downloader",
   },
 ];
+
+function ProjectImage({ src, alt }: { src: string; alt: string }) {
+  const [error, setError] = useState(false);
+
+  if (error) {
+    return (
+      <div className="w-full h-full bg-violet-500/20 flex items-center justify-center">
+        <span className="text-violet-400 text-sm">Imagen no disponible</span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      onError={() => setError(true)}
+      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+    />
+  );
+}
 
 export function Projects() {
   return (
@@ -85,11 +108,7 @@ export function Projects() {
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                <ProjectImage src={project.image} alt={project.title} />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
               </div>
 
